@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivina flores - intentos limitados</title>
+    <link rel="stylesheet" href="./css/estils.css">
+    <link rel="shortcut icon" href="img/flor.jpg" type="image/x-icon">
+</head>
+
+<body>
+    <script>
+        const flores = ['rosa', 'cala', 'margarita', 'violeta', 'petunia', 'clavel', 'lirio', 'jazmin', 'azahar', 'magnolia'];
+        const florSecreta = flores[Math.floor(Math.random() * flores.length)];
+        const intentosMaximos = 5;
+        let intentos = 0;
+        let adivinado = false;
+
+        while (intentos < intentosMaximos && !adivinado) {
+            const respuesta = prompt(`Intento ${intentos + 1} de ${intentosMaximos}:\nAdivina el nombre de la flor:`);
+
+            // Si el usuario cancela el prompt
+            if (respuesta === null) {
+                alert("Juego cancelado.");
+                break;
+            }
+
+            const florUsuario = respuesta.toLowerCase().trim();
+
+            if (!flores.includes(florUsuario)) {
+                alert("Por favor, ingresa un nombre de flor válido.");
+                continue; // No se cuenta como intento
+            }
+
+            intentos++;
+
+            if (florUsuario === florSecreta) {
+                alert(`¡Felicidades! Has adivinado. La flor era "${florSecreta}".`);
+                adivinado = true;
+
+            } else if (intentos < intentosMaximos) {
+                alert("No es la flor correcta, intenta de nuevo.");
+            }
+        }
+
+        if (!adivinado && intentos === intentosMaximos) {
+            alert(`Lo siento, se han acabado los intentos. La flor era "${florSecreta}".`);
+
+        }
+    </script>
+</body>
+
+</html>

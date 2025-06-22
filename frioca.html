@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivinar número</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="img/numbers.ico" type="image/x-icon">
+
+</head>
+
+<body>
+    <!--Modifica el juego Frío-Tibio-Caliente, para que todas las entradas de datos sean por prompt y todos los mensajes mostrados con alert.-->
+    <script>
+        const numeroSecreto = Math.floor(Math.random() * 500) + 1;
+        let intentos = 0;
+        let adivinado = false;
+
+        while (!adivinado) {
+            const entrada = prompt("Escribe un número entre 1 y 500:");
+            const numero = parseInt(entrada, 10);
+            intentos++;
+
+            if (isNaN(numero) || numero < 1 || numero > 500) {
+                alert("⚠️ Por favor, ingresa un número válido entre 1 y 500.");
+                continue;
+            }
+
+            const diferencia = Math.abs(numeroSecreto - numero);
+
+            if (numero === numeroSecreto) {
+                alert(`🎉 ¡Excelente! El número era ${numeroSecreto}. Has ganado en ${intentos} intento(s).`);
+                adivinado = true;
+            } else {
+                let mensaje = "";
+
+                if (diferencia >= 50) {
+                    mensaje = "🙅‍♀️ Frío, frío: ";
+                } else if (diferencia >= 15) {
+                    mensaje = "🙅‍♀️ Tibio, tibio: ";
+                } else {
+                    mensaje = "🙅‍♀️ Caliente, caliente: ";
+
+                }
+
+                if (numero > numeroSecreto) {
+                    mensaje += "Tu número es mayor al mío. 🤖";
+                } else {
+                    mensaje += "Tu número es menor al mío. 🤖";
+                }
+
+                alert(mensaje);
+            }
+        }
+    </script>
+</body>
+
+</html>

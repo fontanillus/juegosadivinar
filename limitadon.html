@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adivina el número con intentos limitado(JC ALERT PROMPT Y WHILE)</title>
+    <link rel="stylesheet" href="./css/estilo.css">
+    <link rel="shortcut icon" href="img/numeros.png" type="image/x-icon">
+</head>
+
+<body>
+
+    <!--Copia el programa 1 y modifícalo para que el usuario sólo tenga 5 intentos para adivinar
+Si adivina, muestra un mensaje que diga  'Felicidades!, has adivinado. El número era n'
+Si no, muestra un mensaje que diga: 'Lo siento!, se han acabado los intentos. El número era n'-->
+
+    <script>
+        const numeroSecreto = Math.floor(Math.random() * 30) + 1;
+        const intentosMaximos = 5;
+        let intentos = 0;
+        let adivinado = false;
+
+        while (intentos < intentosMaximos && !adivinado) {
+            const respuesta = prompt(`Intento ${intentos + 1} de ${intentosMaximos}:\nAdivina el número entre 1 y 30:`);
+
+            console.log(respuesta);
+
+            // Cancelar prompt
+            if (respuesta === null) {
+                alert("Juego cancelado.");
+                break;
+            }
+
+            const numeroUsuario = Number(respuesta);
+
+            if (isNaN(numeroUsuario)) {
+                alert("Por favor, ingresa un número válido.");
+                continue;
+            }
+
+            intentos++;
+
+            if (numeroUsuario === numeroSecreto) {
+                alert(`¡Felicidades! has adivinado. El número era ${numeroSecreto}.`);
+                adivinado = true;
+
+            } else if (intentos < intentosMaximos) {
+                alert("No es el número correcto, intenta de nuevo.");
+            }
+        }
+
+        if (!adivinado && intentos === intentosMaximos) {
+            alert(`Lo siento, se han acabado los intentos. El número era ${numeroSecreto}.`);
+
+
+        }
+    </script>

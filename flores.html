@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo adivinar flores (js, while alert prompt)</title>
+   <link rel="stylesheet" href="./css/estils.css">
+   <link rel="shortcut icon" href="img/flor.jpg" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Hacer un programa que pida al usuario que adivine una flor de entre las flores del siguiente array:
+    flores = ['rosa', 'cala', 'margarita', 'violeta', 'petunia', 'clavel', 'lirio', 'jazmin', 'azahar', 'magnolia' ]
+    Una vez que el usuario adivine, el programa deberá felicitarlo enviando este mensaje:
+    'Felicidades!, has adivinado. La flor era x'-->
+
+    <script>
+        const flores = ['rosa', 'cala', 'margarita', 'violeta', 'petunia', 'clavel', 'lirio', 'jazmin', 'azahar', 'magnolia'];
+
+        // Elegir una flor secreta aleatoriamente
+        const florSecreta = flores[Math.floor(Math.random() * flores.length)];
+        let adivinado = false;
+
+        while (!adivinado) {
+            const respuesta = prompt("Adivina el nombre de la flor").toLowerCase().trim();
+
+            if (respuesta === florSecreta) {
+                alert(`¡Felicidades! Has adivinado. La flor era ${florSecreta}`);
+                adivinado = true;
+
+
+            } else {
+                alert("No es la flor correcta, intenta de nuevo.");
+            }
+
+            console.log(respuesta);
+        }
+    </script>
+</body>
+
+</html>
